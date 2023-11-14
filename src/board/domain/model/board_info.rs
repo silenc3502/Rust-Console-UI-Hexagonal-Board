@@ -54,13 +54,13 @@ mod tests {
     #[test]
     fn test_create_board_info() {
         let title = BoardTitle::new("Sample Title").expect("Failed to create BoardTitle");
-        let writer = BoardWriter::new("John Doe").expect("Failed to create BoardWriter");
+        let writer = BoardWriter::new("Sample Writer").expect("Failed to create BoardWriter");
         let content = BoardContent::new("Sample Content").expect("Failed to create BoardContent");
 
         let info = BoardInfo::create_board_info(title, writer, content);
 
         assert_eq!(info.board_title.title(), "Sample Title");
-        assert_eq!(info.board_writer.writer(), "John Doe");
+        assert_eq!(info.board_writer.writer(), "Sample Writer");
         assert_eq!(info.board_content.content(), "Sample Content");
     }
 
@@ -81,7 +81,7 @@ mod tests {
 
     fn create_sample_info() -> BoardInfo {
         let title = BoardTitle::new("Sample Title").expect("Failed to create BoardTitle");
-        let writer = BoardWriter::new("John Doe").expect("Failed to create BoardWriter");
+        let writer = BoardWriter::new("Sample Writer").expect("Failed to create BoardWriter");
         let content = BoardContent::new("Sample Content").expect("Failed to create BoardContent");
 
         BoardInfo::create_board_info(title, writer, content)

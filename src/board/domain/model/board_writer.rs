@@ -30,8 +30,8 @@ mod tests {
 
     #[test]
     fn test_valid_writer() {
-        let writer = BoardWriter::new("John Doe").expect("Failed to create BoardWriter");
-        assert_eq!(writer.writer, "John Doe");
+        let writer = BoardWriter::new("Sample Writer").expect("Failed to create BoardWriter");
+        assert_eq!(writer.writer, "Sample Writer");
     }
 
     #[test]

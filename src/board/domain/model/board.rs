@@ -44,7 +44,7 @@ mod tests {
     #[test]
     fn test_create_new_board() {
         let title = BoardTitle::new("Sample Title").expect("Failed to create BoardTitle");
-        let writer = BoardWriter::new("John Doe").expect("Failed to create BoardWriter");
+        let writer = BoardWriter::new("Sample Writer").expect("Failed to create BoardWriter");
         let content = BoardContent::new("Sample Content").expect("Failed to create BoardContent");
 
         let info = BoardInfo::create_board_info(title, writer, content);
@@ -59,7 +59,7 @@ mod tests {
     #[test]
     fn test_update_board() {
         let title = BoardTitle::new("Sample Title").expect("Failed to create BoardTitle");
-        let writer = BoardWriter::new("John Doe").expect("Failed to create BoardWriter");
+        let writer = BoardWriter::new("Sample Writer").expect("Failed to create BoardWriter");
         let content = BoardContent::new("Sample Content").expect("Failed to create BoardContent");
 
         let mut board = Board::create_new_board(BoardInfo::create_board_info(title, writer, content.clone()));

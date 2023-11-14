@@ -1,5 +1,6 @@
-use super::StoreBoardPort;
+use crate::board::application::port::input::write_board_result::WriteBoardResult;
+use crate::board::application::port::input::write_board_command::WriteBoardCommand;
 
-pub struct WriteBoardService {
-    store_free_board_port: Box<dyn StoreFreeBoardPort>,
+pub trait WriteFreeBoardUseCase {
+    fn execute(&self, command: WriteBoardCommand) -> WriteBoardResult;
 }
