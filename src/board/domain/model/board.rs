@@ -4,7 +4,7 @@ use crate::board::application::port::input::update_board_command::UpdateBoardCom
 
 use chrono::{DateTime, Utc};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Board {
     board_id: BoardId,
     board_info: BoardInfo,
@@ -31,6 +31,10 @@ impl Board {
     pub fn update(&mut self, command: UpdateBoardCommand) {
         let _ = self.board_info.update(&command);
         self.update_at = Utc::now();
+    }
+
+    pub fn get_board_id(&self) -> &BoardId {
+        &self.board_id
     }
 }
 

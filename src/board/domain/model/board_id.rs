@@ -1,6 +1,7 @@
+use std::fmt;
 use uuid::Uuid;
 
-#[derive(Debug, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct BoardId {
     id: Uuid,
 }
@@ -22,6 +23,12 @@ impl BoardId {
 
     pub fn nil() -> Self {
         Self { id: Uuid::nil() }
+    }
+}
+
+impl fmt::Display for BoardId {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.id)
     }
 }
 
