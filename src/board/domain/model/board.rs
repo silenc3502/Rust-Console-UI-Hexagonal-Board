@@ -36,6 +36,10 @@ impl Board {
     pub fn get_board_id(&self) -> &BoardId {
         &self.board_id
     }
+
+    pub fn get_board_info(&self) -> &BoardInfo {
+        &self.board_info
+    }
 }
 
 #[cfg(test)]
@@ -54,9 +58,8 @@ mod tests {
         let info = BoardInfo::create_board_info(title, writer, content);
         let board = Board::create_new_board(info.clone());
 
-        assert_eq!(board.board_info, info);
-        assert_ne!(board.board_id, BoardId::nil());
-
+        assert_eq!(board.get_board_info(), &info);
+        assert_ne!(board.get_board_id(), &BoardId::nil());
         assert!(board.create_at <= Utc::now());
     }
 
@@ -75,7 +78,7 @@ mod tests {
 
         board.update(update_command);
 
-        assert_eq!(board.board_info.get_board_title().title(), "Updated Title");
-        assert_eq!(board.board_info.get_board_content().content(), "Updated Content");
+        assert_eq!(board.get_board_info().get_board_title().title(), "Updated Title");
+        assert_eq!(board.get_board_info().get_board_content().content(), "Updated Content");
     }
 }

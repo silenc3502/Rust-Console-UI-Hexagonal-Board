@@ -1,5 +1,4 @@
 use crate::board::application::port::input::update_board_command::UpdateBoardCommand;
-
 use crate::board::domain::model::board_content::BoardContent;
 use crate::board::domain::model::board_title::BoardTitle;
 use crate::board::domain::model::board_writer::BoardWriter;
@@ -36,6 +35,10 @@ impl BoardInfo {
         &self.board_title
     }
 
+    pub fn get_board_writer(&self) -> &BoardWriter {
+        &self.board_writer
+    }
+
     pub fn get_board_content(&self) -> &BoardContent {
         &self.board_content
     }
@@ -57,11 +60,11 @@ mod tests {
         let writer = BoardWriter::new("Sample Writer").expect("Failed to create BoardWriter");
         let content = BoardContent::new("Sample Content").expect("Failed to create BoardContent");
 
-        let info = BoardInfo::create_board_info(title, writer, content);
+        let info = BoardInfo::create_board_info(title.clone(), writer.clone(), content.clone());
 
-        assert_eq!(info.board_title.title(), "Sample Title");
-        assert_eq!(info.board_writer.writer(), "Sample Writer");
-        assert_eq!(info.board_content.content(), "Sample Content");
+        assert_eq!(info.get_board_title().title(), "Sample Title");
+        assert_eq!(info.get_board_writer().writer(), "Sample Writer");
+        assert_eq!(info.get_board_content().content(), "Sample Content");
     }
 
     #[test]
@@ -75,8 +78,8 @@ mod tests {
 
         let _ = info.update(&update_command);
 
-        assert_eq!(info.board_title.title(), "Updated Title");
-        assert_eq!(info.board_content.content(), "Updated Content");
+        assert_eq!(info.get_board_title().title(), "Updated Title");
+        assert_eq!(info.get_board_content().content(), "Updated Content");
     }
 
     fn create_sample_info() -> BoardInfo {
