@@ -1,6 +1,9 @@
 use crate::board::adapter::output::in_memory::in_memory_board::InMemoryBoard;
 
 use std::collections::HashMap;
+use crate::board::application::port::output::store_board_port::StoreBoardPort;
+use crate::board::domain::model::board::Board;
+
 
 #[derive(Debug)]
 pub struct BoardRepository {
@@ -19,7 +22,22 @@ impl BoardRepository {
     }
 
     pub fn get(&self, id: &str) -> Option<&InMemoryBoard> {
-        self.storage.get(id)
+        println!("Searching for board with ID: {}", id);
+
+        let searched_lowercased_id = id.to_lowercase();
+
+        for (stored_id, board) in self.storage.iter() {
+            let stored_lowercased_id = stored_id.to_lowercase();
+            println!("Stored Board ID: {}", stored_lowercased_id);
+            // Print other board information if needed
+
+            if stored_lowercased_id == searched_lowercased_id {
+                println!("Board found!");
+                return Some(board);
+            }
+        }
+
+        None
     }
 
     pub fn remove(&mut self, id: &str) -> Option<InMemoryBoard> {

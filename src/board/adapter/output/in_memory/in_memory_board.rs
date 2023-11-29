@@ -79,11 +79,11 @@ pub struct InMemoryBoard {
 }
 
 impl InMemoryBoard {
-    pub fn new(title: &str, writer: &str, content: &str) -> Self {
+    pub fn new(id: &str, title: &str, writer: &str, content: &str) -> Self {
         let now = Local::now();
 
         Self {
-            id: Uuid::new_v4().to_string(),
+            id: id.to_string(),
             title: title.to_string(),
             writer: writer.to_string(),
             content: content.to_string(),

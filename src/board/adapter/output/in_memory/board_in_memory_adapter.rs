@@ -12,10 +12,12 @@ impl<'a> BoardInMemoryAdapter<'a> {
     }
 
     pub fn store(&mut self, board: Board) {
+        let board_id = board.get_board_id().get_id().to_string();
         let board_info = board.get_board_info();
         let board_writer = board_info.get_board_writer();
 
         let in_memory_board = InMemoryBoard::new(
+            &board_id,
             &board_info.get_board_title().title().to_string(),
             &board_writer.writer().to_string(),
             &board_info.get_board_content().content().to_string(),
